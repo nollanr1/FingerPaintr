@@ -22,7 +22,10 @@
 /*******************************************/
 
 body {
-
+background-color: darkolivegreen;
+}
+canvas {
+     background-color: white;
 }
 
 

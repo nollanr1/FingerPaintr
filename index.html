@@ -6,14 +6,21 @@
     	<meta name="keywords" content="one, two, three">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>Blank Template</title>
+		<title>FingerPaintr</title>
 
 		<!-- external CSS link -->
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-
+		<canvas id="theCanvas" width="300" height="300"> <!--TODO: Custom canvas sizes, presumably either from main.js or the EJS conversion-->
+			<p>
+				This browser does not support the <code>canvas</code> element.<br>
+				To use FingerPaintr, a more modern browser is required - or enable JavaScript.<br>
+				One of those.
+			</p>
+		</canvas>
+		<span id = "objectCoords"></span>
 		<script type="text/javascript" src="js/main.js"></script>
 	</body>
 </html>
