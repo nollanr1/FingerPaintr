@@ -39,7 +39,13 @@ header {
 footer {
 
 }
-
+.centeringBox {
+     display: flex;
+     justify-content: center;
+}
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+h1 {
+     text-align: center;
+}

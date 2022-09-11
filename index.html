@@ -13,14 +13,21 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		<canvas id="theCanvas" width="300" height="300"> <!--TODO: Custom canvas sizes, presumably either from main.js or the EJS conversion-->
-			<p>
-				This browser does not support the <code>canvas</code> element.<br>
-				To use FingerPaintr, a more modern browser is required - or enable JavaScript.<br>
-				One of those.
-			</p>
-		</canvas>
-		<span id = "objectCoords"></span>
+		<h1>Finger Paintr</h1>
+		<div class="centeringBox">
+			<canvas id="theCanvas" width="600" height="600"> <!--TODO: Custom canvas sizes, presumably either from main.js or the EJS conversion-->
+				<p>
+					This browser does not support the <code>canvas</code> element.<br>
+					To use FingerPaintr, a more modern browser is required - or enable JavaScript.<br>
+					One of those.
+				</p>
+			</canvas>
+		</div>
+		<span id = "objectCoords"></span> <!--TODO: Remove this debug line-->
+		<input type="color" id="color" name="color" value = '#000'>
+		<label for="color">Color</label>
+		<input type="number" id="thickness" name="thickness" value = 3>
+		<label for="thickness">Brush Size</label>
 		<script type="text/javascript" src="js/main.js"></script>
 	</body>
 </html>
