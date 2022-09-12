@@ -1,3 +1,5 @@
+document.getElementById('imageUpload').addEventListener('change', placeImgOnCanvas);
+
 //The dreaded global variables.
 //I believe it's more effective to ping the document once when mouse down,
 //Then reference these while drawing.
@@ -5,18 +7,28 @@
 //To get the right color and thickness
 let brushColor = '#000';
 let brushThickness = 3;
-
-//We'll use the demo code from Moz as the foundation,
-//since they apparently did the thing I intend already...
-//It's been bushwhacked a bit and probably will be a lot more as things progress
+const theCanvas = document.getElementById('theCanvas');
+const context = theCanvas.getContext('2d');
+//We'll use the demo code from Moz as the foundation, since open source
 
 // When true, moving the mouse draws on the canvas
 let isDrawing = false;
 let x = 0;
 let y = 0;
-
-const theCanvas = document.getElementById('theCanvas');
-const context = theCanvas.getContext('2d');
+/*placeImgOnCanvas:
+puts the uploaded image on the canvas.
+Does not resize the image, blank out old image, or resize the canvas.*/
+function placeImgOnCanvas() {
+  let img = new Image();
+  img.onload = function () {
+    //NOT IMPLEMENTED: Canvas resizing. I'd want to validate size first.
+    //theCanvas.width = this.width;
+    //theCanvas.height = this.height;
+    context.drawImage(this, 0, 0);
+    URL.revokeObjectURL(this.src);
+  }
+  img.src = URL.createObjectURL(document.getElementById('imageUpload').files[0]);
+}
 
 // event.offsetX, event.offsetY gives the (x,y) offset from the edge of the canvas.
 
