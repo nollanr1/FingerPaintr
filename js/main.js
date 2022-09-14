@@ -1,4 +1,5 @@
 document.getElementById('imageUpload').addEventListener('change', placeImgOnCanvas);
+document.getElementById('imageDownload').addEventListener('click', downloadImage);
 
 //The dreaded global variables.
 //I believe it's more effective to ping the document once when mouse down,
@@ -76,3 +77,15 @@ function drawLine(context, x1, y1, x2, y2) {
 }
 // End Moz demo code.
 // My thanks to you (and this is sincere).
+
+
+/*
+downloadImage:
+Converts the current canvas contents into an image file and prompts the user to download.
+Does not release the dataURL afterwards since I seem to have no way to track the user progress, so...
+*/
+function downloadImage(){
+  let tempDataURL = theCanvas.toDataURL();//This is PNG by default, don't see any need for other formats but if someone asks I might look into it.
+  console.log(tempDataURL);
+  document.getElementById('downloadLink').href = tempDataURL;
+}
