@@ -9,6 +9,8 @@ let brushColor = '#000';
 let brushThickness = 3;
 const theCanvas = document.getElementById('theCanvas');
 const context = theCanvas.getContext('2d');
+const maxHeight = 1080;
+const maxWidth = 1920; //This should be large enough for now.
 //We'll use the demo code from Moz as the foundation, since open source
 
 // When true, moving the mouse draws on the canvas
@@ -17,14 +19,19 @@ let x = 0;
 let y = 0;
 /*placeImgOnCanvas:
 puts the uploaded image on the canvas.
-Does not resize the image, blank out old image, or resize the canvas.*/
+Does not resize the image.*/
 function placeImgOnCanvas() {
   let img = new Image();
   img.onload = function () {
-    //NOT IMPLEMENTED: Canvas resizing. I'd want to validate size first.
-    //theCanvas.width = this.width;
-    //theCanvas.height = this.height;
-    context.drawImage(this, 0, 0);
+    if(this.width > maxWidth || this.height > maxHeight){ //Basic gate to stop overly large images, to save the sorrow of being rejected by the backend after all your hard work.
+      //You could bypass this by editing this code since it's all frontend, but... if you're reading this comment to try that, just go use GIMP or something, hackerman.
+      alert(`Image is larger than allowed size. Maximum size is ${maxHeight} pixels high by ${maxWidth} pixels wide, but this image is ${this.height} pixels high by ${this.width} pixels wide. Image downscaling or larger images may be supported in the future, but not yet.`);
+    }
+    else{
+      theCanvas.width = this.width;
+      theCanvas.height = this.height;
+      context.drawImage(this, 0, 0);
+    }
     URL.revokeObjectURL(this.src);
   }
   img.src = URL.createObjectURL(document.getElementById('imageUpload').files[0]);
