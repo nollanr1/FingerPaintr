@@ -6,7 +6,9 @@ const homeController = require("../controllers/home");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Main Routes - simplified for now
-router.get("/", homeController.getIndex);
+router.get("/", ensureGuest, homeController.getIndex);
+router.get("/canvas", ensureAuth, homeController.getCanvas);
+//Auth isn't required, but landing page differs a little if you're logged in
 // router.get("/profile", ensureAuth, postsController.getProfile);
 // router.get("/feed", ensureAuth, postsController.getFeed);
 router.get("/login", authController.getLogin);
