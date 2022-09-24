@@ -90,3 +90,24 @@ function downloadImage(){
   console.log(tempDataURL);
   document.getElementById('downloadLink').href = tempDataURL;
 }
+
+//TODO: Less hacky version of this.
+//I can probably just remote load the image, but...
+//Given how touchy htmlCanvas is with outside images,
+//Copying the image upload code seemed the safest approach while building MVP.
+if(theCanvas.hasAttribute('data-init')){ //Then there's an initial image to load
+  let img = new Image();
+  img.onload = function () {
+    if(this.width > maxWidth || this.height > maxHeight){ //Basic gate to stop overly large images, to save the sorrow of being rejected by the backend after all your hard work.
+      //You could bypass this by editing this code since it's all frontend, but... if you're reading this comment to try that, just go use GIMP or something, hackerman.
+      alert(`Image is larger than allowed size. Maximum size is ${maxHeight} pixels high by ${maxWidth} pixels wide, but this image is ${this.height} pixels high by ${this.width} pixels wide. Image downscaling or larger images may be supported in the future, but not yet.`);
+    }
+    else{
+      theCanvas.width = this.width;
+      theCanvas.height = this.height;
+      context.drawImage(this, 0, 0);
+    }
+    URL.revokeObjectURL(this.src);
+  }
+  img.src = theCanvas.getAttribute('data-init');
+}

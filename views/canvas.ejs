@@ -17,7 +17,7 @@
 		<h1>Finger Paintr</h1>
 		<a href="/logout">Log out</a>
 		<div class="centeringBox">
-			<canvas id="theCanvas" width="600" height="600"> <!--TODO: Custom blank canvas sizes, presumably either from main.js or the EJS conversion. Regular JavaScript is already handling resizing for images-->
+			<canvas id="theCanvas" width="600" height="600" <% if(initCanvas) { %> data-init="<%= initCanvas %>" <% } %> >
 				<p>
 					This browser does not support the <code>canvas</code> element.<br>
 					To use FingerPaintr, a more modern browser is required - or enable JavaScript.<br>
