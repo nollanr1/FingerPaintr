@@ -2,15 +2,20 @@ const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/auth");
 const homeController = require("../controllers/home");
-// const postsController = require("../controllers/posts"); //TODO: Viewable Profile/Gallery
+const galleryController = require("../controllers/gallery")
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 //Main Routes - simplified for now
 router.get("/", ensureGuest, homeController.getIndex);
 router.get("/canvas", ensureAuth, homeController.getCanvas);
-//Auth isn't required, but landing page differs a little if you're logged in
-// router.get("/profile", ensureAuth, postsController.getProfile);
-// router.get("/feed", ensureAuth, postsController.getFeed);
+router.get("/canvas/:canvasVal", ensureAuth, homeController.getCanvas);
+
+router.get("/gallery", ensureAuth, galleryController.getGallery); //TODO, MAYBE, SOMEDAY: Viewing other people's galleries if you have permission.
+router.post("/gallery", ensureAuth, galleryController.addToGallery);
+router.get("/gallery/rename/:id", ensureAuth, galleryController.getNameForm);
+router.put("/gallery/rename/:id", ensureAuth, galleryController.updateName);
+router.delete("/gallery/:id", ensureAuth, galleryController.deleteFromGallery);
+
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
 router.get("/logout", authController.logout);

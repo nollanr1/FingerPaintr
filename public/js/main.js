@@ -10,8 +10,8 @@ let brushColor = '#000';
 let brushThickness = 3;
 const theCanvas = document.getElementById('theCanvas');
 const context = theCanvas.getContext('2d');
-const maxHeight = 1080;
-const maxWidth = 1920; //This should be large enough for now.
+const maxHeight = null;
+const maxWidth = null; //In pixels. No size limit, but the functionality is there if needed.
 //We'll use the demo code from Moz as the foundation, since open source
 
 // When true, moving the mouse draws on the canvas
@@ -98,7 +98,7 @@ function downloadImage(){
 if(theCanvas.hasAttribute('data-init')){ //Then there's an initial image to load
   let img = new Image();
   img.onload = function () {
-    if(this.width > maxWidth || this.height > maxHeight){ //Basic gate to stop overly large images, to save the sorrow of being rejected by the backend after all your hard work.
+    if((maxWidth && maxHeight) && (this.width > maxWidth || this.height > maxHeight)){ //Basic gate to stop overly large images, to save the sorrow of being rejected by the backend after all your hard work.
       //You could bypass this by editing this code since it's all frontend, but... if you're reading this comment to try that, just go use GIMP or something, hackerman.
       alert(`Image is larger than allowed size. Maximum size is ${maxHeight} pixels high by ${maxWidth} pixels wide, but this image is ${this.height} pixels high by ${this.width} pixels wide. Image downscaling or larger images may be supported in the future, but not yet.`);
     }
