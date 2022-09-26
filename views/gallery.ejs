@@ -9,17 +9,22 @@
 		<title>The Gallery Belonging to <%= userName %></title>
 
 		<!-- external CSS link -->
-		<link rel="stylesheet" href="css/normalize.css">
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
 		<h1>Finger Paintr</h1>
 		<a href="/canvas">New Painting</a>
 		<a href="/logout">Log Out</a>
+		<div class="galleryContainer">
 		<% for(let i=0; i<galleryContents.length; i++) { %>
-			<img src="<%= galleryContents[i].image %>">
-			<h3><%= galleryContents[i].title %></h3>
-			<a href="/gallery/rename/<%= galleryContents[i]._id %>">Rename this painting</a>
+			<div class="galleryItem">
+				<img src="<%= galleryContents[i].image %>">
+				<h3><%= galleryContents[i].title %></h3>
+				<a href="/gallery/rename/<%= galleryContents[i]._id %>">Rename this painting</a>
+				<a href="/canvas/<%= galleryContents[i]._id %>">Paint on this</a>
+			</div>
 		<% } %>
+		</div>
 	</body>
 </html>

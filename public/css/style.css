@@ -46,6 +46,13 @@ footer {
      display: flex;
      justify-content: center;
 }
+.galleryContainer {
+     display: flex;
+}
+.galleryContainer img {
+     max-height: 600px;
+     max-width: 600px;
+}
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
