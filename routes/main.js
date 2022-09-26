@@ -10,6 +10,9 @@ router.get("/", ensureGuest, homeController.getIndex);
 router.get("/canvas", ensureAuth, homeController.getCanvas);
 router.get("/canvas/:canvasVal", ensureAuth, homeController.getCanvas);
 
+router.get("/paramsLogger/:params", ensureAuth, galleryController.logParams);
+router.post("/paramsLogger/:params", ensureAuth, galleryController.logParams);
+
 router.get("/gallery", ensureAuth, galleryController.getGallery); //TODO, MAYBE, SOMEDAY: Viewing other people's galleries if you have permission.
 router.post("/gallery", ensureAuth, galleryController.addToGallery);
 router.get("/gallery/rename/:id", ensureAuth, galleryController.getNameForm);

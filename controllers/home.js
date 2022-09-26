@@ -5,6 +5,6 @@ module.exports = {
 	},
 	getCanvas:(req, res) => {
 		console.log(`Sending ejs canvas to ${req.user.userName}`);
-		res.render("canvas.ejs", {userName: req.user.userName, initCanvas: "https://placekitten.com/600/600"/*req.canvasVal*/}); //TODO: Pass the canvas initialization link
+		res.render("canvas.ejs", {userName: req.user.userName, initCanvas: null/*"https://placekitten.com/600/600"/*req.canvasVal*/}); //TODO: Pass the canvas initialization link
 	},
   };  

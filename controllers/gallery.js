@@ -2,6 +2,12 @@ const cloudinary = require("../middleware/cloudinary");
 const Painting = require("../models/Painting");
 
 module.exports = {
+
+	logParams: async (req, res) => {
+		console.log(req.params);
+		res.redirect("/canvas");
+	},
+
 	getGallery:(req, res) => {
 		console.log(`Now rendering out the gallery belonging to ${req.user.userName}`);
 		res.render("gallery.ejs", {userName: req.user.userName, galleryContents: galleryContents});

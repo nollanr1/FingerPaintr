@@ -1,5 +1,9 @@
 document.getElementById('imageUpload').addEventListener('change', placeImgOnCanvas);
 document.getElementById('imageDownload').addEventListener('click', downloadImage);
+if (document.getElementById('saveToGallery') != null){
+  document.getElementById('saveToGallery').addEventListener('click', saveToGallery);
+}
+
 
 //The dreaded global variables.
 //I believe it's more effective to ping the document once when mouse down,
@@ -24,7 +28,7 @@ Does not resize the image.*/
 function placeImgOnCanvas() {
   let img = new Image();
   img.onload = function () {
-    if(this.width > maxWidth || this.height > maxHeight){ //Basic gate to stop overly large images, to save the sorrow of being rejected by the backend after all your hard work.
+    if((maxWidth && maxHeight) && (this.width > maxWidth || this.height > maxHeight)){ //Basic gate to stop overly large images, to save the sorrow of being rejected by the backend after all your hard work.
       //You could bypass this by editing this code since it's all frontend, but... if you're reading this comment to try that, just go use GIMP or something, hackerman.
       alert(`Image is larger than allowed size. Maximum size is ${maxHeight} pixels high by ${maxWidth} pixels wide, but this image is ${this.height} pixels high by ${this.width} pixels wide. Image downscaling or larger images may be supported in the future, but not yet.`);
     }
@@ -88,8 +92,19 @@ Does not release the dataURL afterwards since I seem to have no way to track the
 function downloadImage(){
   let tempDataURL = theCanvas.toDataURL();//This is PNG by default, don't see any need for other formats but if someone asks I might look into it.
   console.log(tempDataURL);
-  document.getElementById('downloadLink').href = tempDataURL;
+  let anchor = document.getElementById('downloadLink');
+  anchor.href = tempDataURL;
+  anchor.click();
 }
+
+function saveToGallery(){
+  let tempDataURL = theCanvas.toDataURL();
+  console.log(`TempURL: ${tempDataURL}`);
+  console.log()
+  //window.location.href = `/paramsLogger/${tempDataURL}`;
+  window.location.href = `/paramsLogger/TestParam`;
+}
+
 
 //TODO: Less hacky version of this.
 //I can probably just remote load the image, but...
