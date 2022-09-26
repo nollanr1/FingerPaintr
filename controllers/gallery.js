@@ -29,7 +29,7 @@ module.exports = {
 			cloudinaryId: result.public_id,
 			user: req.user.id,
 		  });
-		  console.log(`Painting has been added to ${req.user.id}'s gallery!`);
+		  console.log(`Painting has been added to ${req.user.userName}'s gallery!`);
 		  //res.redirect(`/gallery/rename/${Painting._id}`);
 		  res.redirect(`/gallery`);
 		} catch (err) {

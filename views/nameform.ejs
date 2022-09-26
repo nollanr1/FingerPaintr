@@ -19,7 +19,7 @@
 		<img src="<%= painting.image %>">
 		<form
 			action="/gallery/rename/<%= painting._id %>?_method=PUT"
-			method="PUT"
+			method="POST"
 			class="col-3"
 		>
 		<label for="title" class="form-label">Title</label>

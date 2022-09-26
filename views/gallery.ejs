@@ -18,6 +18,8 @@
 		<a href="/logout">Log Out</a>
 		<% for(let i=0; i<galleryContents.length; i++) { %>
 			<img src="<%= galleryContents[i].image %>">
+			<h3><%= galleryContents[i].title %></h3>
+			<a href="/gallery/rename/<%= galleryContents[i]._id %>">Rename this painting</a>
 		<% } %>
 	</body>
 </html>
