@@ -3,34 +3,40 @@ const Painting = require("../models/Painting");
 
 module.exports = {
 
-	logParams: async (req, res) => {
-		console.log(req.params);
-		res.redirect("/canvas");
-	},
+	// logParams: async (req, res) => {
+	// 	console.log(req.params);
+	// 	console.log(req.file);
+	// 	res.redirect("/canvas");
+	// },
 
-	getGallery:(req, res) => {
-		console.log(`Now rendering out the gallery belonging to ${req.user.userName}`);
-		res.render("gallery.ejs", {userName: req.user.userName, galleryContents: galleryContents});
+	getGallery: async (req, res) => {
+		try{
+			console.log(`Now rendering out the gallery belonging to ${req.user.userName}`);
+			const galleryContents = await Painting.find({ user: req.user.id }).sort({ createdAt: "desc" }).lean();
+			res.render("gallery.ejs", {userName: req.user.userName, galleryContents: galleryContents});
+		}
+		catch (err) {
+			console.log(err);
+		}
 	},
 	addToGallery: async (req, res) => {
 		try {
 		  // Upload image to cloudinary
 		  const result = await cloudinary.uploader.upload(req.file.path);
 		  await Painting.create({
-			title: req.body.title || 'Untitled Painting',
+			title: 'Untitled Painting',
 			image: result.secure_url,
 			cloudinaryId: result.public_id,
-			caption: req.body.caption,
 			user: req.user.id,
 		  });
-		  console.log(`Painting ${req.body.title} has been added to ${req.user.id}'s gallery!`);
-		  res.redirect(`/gallery/rename/${Painting._id}`);
+		  console.log(`Painting has been added to ${req.user.id}'s gallery!`);
+		  //res.redirect(`/gallery/rename/${Painting._id}`);
+		  res.redirect(`/gallery`);
 		} catch (err) {
 		  console.log(err);
 		}
 	},
 	getNameForm: async (req, res) => {
-		//TODO: Actually pass the URL, not the ID
 		const painting = await Painting.findById(req.params.id);
 		res.render("nameForm.ejs", {painting: painting});
 	},

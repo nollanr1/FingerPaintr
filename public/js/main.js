@@ -97,10 +97,15 @@ function downloadImage(){
   anchor.click();
 }
 
+/*saveToGallery():
+In the final product this should hopefully allow users to save the canvas
+Directly to the gallery.
+As it stands, I can only get the terrible, terrible user loop of
+download the file, then upload the file through a seperate interface.
+Such is the pain of time crunch, but I have only myself to blame, really. */
 function saveToGallery(){
   let tempDataURL = theCanvas.toDataURL();
   console.log(`TempURL: ${tempDataURL}`);
-  console.log()
   //window.location.href = `/paramsLogger/${tempDataURL}`;
   window.location.href = `/paramsLogger/TestParam`;
 }

@@ -35,8 +35,18 @@
 		<label for="imageDownload">Generate download link for your painting</label>
 		<button id="imageDownload" name="imageDownload">Generate</button>
 		<a id="downloadLink" download="true" href="">Click to download</a>
-		<label for="saveToGallery">Save image to your Gallery</label>
-		<button id="saveToGallery">Save</button>
+
+		<div class="mt-5">
+            <h2>Upload an Image</h2>
+            <form action="/gallery" enctype="multipart/form-data" method="POST">
+                <label for="imgUpload" class="form-label">Image</label>
+                <input type="file" class="form-control" id="imageUpload" name="file">
+              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+            </form>
+          </div>
+
+		<!--<label for="saveToGallery">Save image to your Gallery</label>
+		<button id="saveToGallery">Save</button>-->
 		<script type="text/javascript" src="js/main.js"></script>
 	</body>
 </html>

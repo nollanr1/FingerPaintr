@@ -28,7 +28,7 @@ canvas {
      background-color: white;
 }
 #imageUpload {
-     opacity: 0; /*At MDN's recommendation because file upload is ugly*/
+     /*opacity: 0; *//*At MDN's recommendation because file upload is ugly*/
 }
 
 

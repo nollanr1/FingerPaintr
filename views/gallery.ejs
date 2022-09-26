@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+    	<meta name="description" content="Your description goes here">
+    	<meta name="keywords" content="one, two, three">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>The Gallery Belonging to <%= userName %></title>
+
+		<!-- external CSS link -->
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<h1>Finger Paintr</h1>
+		<a href="/canvas">New Painting</a>
+		<a href="/logout">Log Out</a>
+		<% for(let i=0; i<galleryContents.length; i++) { %>
+			<img src="<%= galleryContents[i].image %>">
+		<% } %>
+	</body>
+</html>
