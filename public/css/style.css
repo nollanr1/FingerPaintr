@@ -28,7 +28,7 @@ canvas {
      background-color: white;
 }
 #imageUpload {
-     opacity: 0; /*At MDN's recommendation because file upload is ugly*/
+     /*opacity: 0; *//*At MDN's recommendation because file upload is ugly*/
 }
 
 
@@ -45,6 +45,13 @@ footer {
 .centeringBox {
      display: flex;
      justify-content: center;
+}
+.galleryContainer {
+     display: flex;
+}
+.galleryContainer img {
+     max-height: 600px;
+     max-width: 600px;
 }
 /******************************************
 /* ADDITIONAL STYLES

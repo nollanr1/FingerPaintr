@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    	<meta charset="utf-8">
+    	<meta name="description" content="Your description goes here">
+    	<meta name="keywords" content="one, two, three">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>FingerPaintr</title>
+
+		<!-- external CSS link -->
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<a href="/gallery">Gallery</a>
+		<h1>What's this piece named?</h1>
+		<a href="/logout">Log out</a>
+		<img src="<%= painting.image %>">
+		<form
+			action="/gallery/rename/<%= painting._id %>?_method=PUT"
+			method="POST"
+			class="col-3"
+		>
+		<label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title">
+		<button type="submit" class="btn btn-primary">Submit</button>
+	  </form>
+	</body>
+</html>

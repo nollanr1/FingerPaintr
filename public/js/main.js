@@ -1,5 +1,9 @@
 document.getElementById('imageUpload').addEventListener('change', placeImgOnCanvas);
 document.getElementById('imageDownload').addEventListener('click', downloadImage);
+if (document.getElementById('saveToGallery') != null){
+  document.getElementById('saveToGallery').addEventListener('click', saveToGallery);
+}
+
 
 //The dreaded global variables.
 //I believe it's more effective to ping the document once when mouse down,
@@ -10,8 +14,8 @@ let brushColor = '#000';
 let brushThickness = 3;
 const theCanvas = document.getElementById('theCanvas');
 const context = theCanvas.getContext('2d');
-const maxHeight = 1080;
-const maxWidth = 1920; //This should be large enough for now.
+const maxHeight = null;
+const maxWidth = null; //In pixels. No size limit, but the functionality is there if needed.
 //We'll use the demo code from Moz as the foundation, since open source
 
 // When true, moving the mouse draws on the canvas
@@ -24,7 +28,7 @@ Does not resize the image.*/
 function placeImgOnCanvas() {
   let img = new Image();
   img.onload = function () {
-    if(this.width > maxWidth || this.height > maxHeight){ //Basic gate to stop overly large images, to save the sorrow of being rejected by the backend after all your hard work.
+    if((maxWidth && maxHeight) && (this.width > maxWidth || this.height > maxHeight)){ //Basic gate to stop overly large images, to save the sorrow of being rejected by the backend after all your hard work.
       //You could bypass this by editing this code since it's all frontend, but... if you're reading this comment to try that, just go use GIMP or something, hackerman.
       alert(`Image is larger than allowed size. Maximum size is ${maxHeight} pixels high by ${maxWidth} pixels wide, but this image is ${this.height} pixels high by ${this.width} pixels wide. Image downscaling or larger images may be supported in the future, but not yet.`);
     }
@@ -88,5 +92,43 @@ Does not release the dataURL afterwards since I seem to have no way to track the
 function downloadImage(){
   let tempDataURL = theCanvas.toDataURL();//This is PNG by default, don't see any need for other formats but if someone asks I might look into it.
   console.log(tempDataURL);
-  document.getElementById('downloadLink').href = tempDataURL;
+  let anchor = document.getElementById('downloadLink');
+  anchor.href = tempDataURL;
+  anchor.click();
+}
+
+/*saveToGallery():
+In the final product this should hopefully allow users to save the canvas
+Directly to the gallery.
+As it stands, I can only get the terrible, terrible user loop of
+download the file, then upload the file through a seperate interface.
+Such is the pain of time crunch, but I have only myself to blame, really. */
+function saveToGallery(){
+  let tempDataURL = theCanvas.toDataURL();
+  console.log(`TempURL: ${tempDataURL}`);
+  //window.location.href = `/paramsLogger/${tempDataURL}`;
+  window.location.href = `/paramsLogger/TestParam`;
+}
+
+
+//TODO: Less hacky version of this.
+//I can probably just remote load the image, but...
+//Given how touchy htmlCanvas is with outside images,
+//Copying the image upload code seemed the safest approach while building MVP.
+if(theCanvas.hasAttribute('data-init')){ //Then there's an initial image to load
+  let img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.onload = function () {
+    if((maxWidth && maxHeight) && (this.width > maxWidth || this.height > maxHeight)){ //Basic gate to stop overly large images, to save the sorrow of being rejected by the backend after all your hard work.
+      //You could bypass this by editing this code since it's all frontend, but... if you're reading this comment to try that, just go use GIMP or something, hackerman.
+      alert(`Image is larger than allowed size. Maximum size is ${maxHeight} pixels high by ${maxWidth} pixels wide, but this image is ${this.height} pixels high by ${this.width} pixels wide. Image downscaling or larger images may be supported in the future, but not yet.`);
+    }
+    else{
+      theCanvas.width = this.width;
+      theCanvas.height = this.height;
+      context.drawImage(this, 0, 0);
+    }
+    URL.revokeObjectURL(this.src);
+  }
+  img.src = theCanvas.getAttribute('data-init');
 }
