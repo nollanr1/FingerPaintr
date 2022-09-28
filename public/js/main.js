@@ -117,6 +117,7 @@ function saveToGallery(){
 //Copying the image upload code seemed the safest approach while building MVP.
 if(theCanvas.hasAttribute('data-init')){ //Then there's an initial image to load
   let img = new Image();
+  img.crossOrigin = 'anonymous';
   img.onload = function () {
     if((maxWidth && maxHeight) && (this.width > maxWidth || this.height > maxHeight)){ //Basic gate to stop overly large images, to save the sorrow of being rejected by the backend after all your hard work.
       //You could bypass this by editing this code since it's all frontend, but... if you're reading this comment to try that, just go use GIMP or something, hackerman.
