@@ -31,13 +31,12 @@ Rendering out things is done with EJS, but the backbone of the thing is JavaScri
 ## Optimizations
 
 Arguably not terrible for a solo project that isn't finished yet.
-This is less than bare bones, though. If this were a construction project, there'd be sharp edges and exposed screws everywhere, and OSHA would have a field day.
+This is less than bare bones, though. If it were a construction project, there'd be sharp edges and exposed screws everywhere. OSHA would have a field day.
 Planned features to implement for 1.0 include:
 
 * The ability to upload your canvas contents *directly* to your gallery. As it stands, you can only upload images to the gallery from your local storage, and the only way to get the image out of the canvas is to download it to your local storage.
 * CSS that isn't ugly. The current olive-green was selected from the IDE dropdown menu as the first color that wasn't optic and also the canvas would be visible against.
 * Limitations on the gallery. Cloudinary will only let us store so much for free, and if this were hosted as-is someone would use it as a private photo library, surely.
-* A login and signup page that actual say "FingerPaintr" instead of the template I pilfered them from
 
 Features after 1.0, to push even further beyond 
 * Different brush shapes - currently, the only brush shape is a sort of scribble, and doesn't hold up very well at larger pixel sizes.
@@ -46,6 +45,7 @@ Features after 1.0, to push even further beyond
 * Custom blank canvas *colors*, so you can have a starting color other than #FFFFFF. If you want it.
 * A way to directly overwrite images in your gallery — currently, the only options are to upload to images and delete old ones, but the ability to directly overwrite an old image with a modified one would be nice.
 * Patching that leak? Currently, whenever you download an image, the program leaks. The leak disappears when you refresh or go to another page, but it's the principle of the thing.
+* Overhauling the drawing code for tablet support! The current version was built with the assumption you'd have a mouse - so while it *works* on a tablet, you can only draw one line at a time, and if you get at a point where the canvas fills the whole screen, you'll be stuck, since you have no way to scroll away. A way to fix this would be *either* multi-finger touch enables movement instead of drawing (which means no multi-finger drawing), *or* an on-screen widget that users can tap to escape the canvas (which would take up screen real estate, but allow for users to draw more than one line at once, which is the real spirit of finger painting.)
 
 ## Lessons Learned:
 
