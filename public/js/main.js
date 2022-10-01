@@ -44,16 +44,18 @@ function placeImgOnCanvas() {
 
 // event.offsetX, event.offsetY gives the (x,y) offset from the edge of the canvas.
 
-// Add the event listeners for mousedown, mousemove, and mouseup
-theCanvas.addEventListener('mousedown', (e) => {
+// Add the event listeners for pointerdown, pointermove, and pointerup
+// This allows user with touchscreens to draw... Once I figure out how to keep the screen from moving with it!
+theCanvas.addEventListener('pointerdown', (e) => {
   x = e.offsetX;
   y = e.offsetY;
   isDrawing = true;
   brushColor = document.getElementById('color').value; //Modifies the global above
   brushThickness = document.getElementById('thickness').value; //This also modifies a global
+  document.body.style.overflow = 'hidden'; //Locks the screen in place while drawing
 });
 
-theCanvas.addEventListener('mousemove', (e) => {
+theCanvas.addEventListener('pointermove', (e) => {
   if (isDrawing) {
     drawLine(context, x, y, e.offsetX, e.offsetY);
     x = e.offsetX;
@@ -61,12 +63,13 @@ theCanvas.addEventListener('mousemove', (e) => {
   }
 });
 
-window.addEventListener('mouseup', (e) => {
+window.addEventListener('pointerup', (e) => {
   if (isDrawing) {
     drawLine(context, x, y, e.offsetX, e.offsetY);
     x = 0;
     y = 0;
     isDrawing = false;
+    document.body.style.overflow = 'visible';
   }
 });
 
