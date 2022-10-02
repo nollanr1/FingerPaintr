@@ -57,6 +57,14 @@ theCanvas.addEventListener('mousedown', (e) => {
   //document.body.style.overflow = 'hidden'; //Locks the screen in place while drawing...But hiding the scrollbar moves the window a bit on desktop browsers.
 });
 theCanvas.addEventListener('touchstart', (e) => {
+  if(isDrawing){ //If we're already drawing, stop drawing, to allow for panning
+    //Yes, this means only one drawing point at a time.
+    //But this is more important than multi-draw at the moment.
+    x = 0;
+    y = 0;
+    isDrawing = false;
+    document.body.style.overflow = 'visible';
+  }
   x = e.offsetX;
   y = e.offsetY;
   isDrawing = true;
