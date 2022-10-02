@@ -9,6 +9,7 @@
 		<title>FingerPaintr</title>
 
 		<!-- external CSS link -->
+		<%- include('partials/bootstraphead') -%>
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/style.css">
 	</head>
@@ -34,7 +35,10 @@
 			accept="image/png, image/jpeg, image/jpg">
 		<label for="imageDownload">Generate download link for your painting</label>
 		<button id="imageDownload" name="imageDownload">Generate</button>
-		<a id="downloadLink" download="true" href="">Click to download</a>
+		<a id="downloadLink" download href="">If the file didn't download, click here</a>
+		
+
 		<script type="text/javascript" src="js/main.js"></script>
+		<%- include('partials/bootstrapfoot') -%>
 	</body>
 </html>

@@ -22,10 +22,10 @@
 /*******************************************/
 
 body {
-background-color: darkolivegreen;
+background-color: rgb(229, 232, 233);
 }
 canvas {
-     background-color: white;
+     background-color: #fff;
 }
 #imageUpload {
      /*opacity: 0; *//*At MDN's recommendation because file upload is ugly*/
@@ -72,4 +72,7 @@ h1 {
 }
 #theCanvas {
      border: 3px solid #000;
+}
+#downloadLink {
+     visibility: hidden;
 }

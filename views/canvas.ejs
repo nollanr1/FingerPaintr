@@ -9,11 +9,12 @@
 		<title>FingerPaintr</title>
 
 		<!-- external CSS link -->
+		<%- include('partials/bootstraphead') -%>
 		<link rel="stylesheet" type="text/css" href="/css/normalize.css">
 		<link rel="stylesheet" type="text/css" href="/css/style.css">
 	</head>
 	<body>
-		<a href="/gallery"><%= userName %></a>
+		<a href="/gallery"><%= userName %>'s Gallery</a>
 		<h1>Finger Paintr</h1>
 		<a href="/logout">Log out</a>
 		<div class="centeringBox">
@@ -34,10 +35,10 @@
 			accept="image/png, image/jpeg, image/jpg">
 		<label for="imageDownload">Generate download link for your painting</label>
 		<button id="imageDownload" name="imageDownload">Generate</button>
-		<a id="downloadLink" download="true" href="">Click to download</a>
+		<a id="downloadLink" download href="">If the file didn't download, click here</a>
 
 		<div class="mt-5">
-            <h2>Upload an Image</h2>
+            <h2>Upload an Image Directly to Your Gallery</h2>
             <form action="/gallery" enctype="multipart/form-data" method="POST">
                 <label for="imgUpload" class="form-label">Image</label>
                 <input type="file" class="form-control" id="imageUpload" name="file">
@@ -48,5 +49,6 @@
 		<!--<label for="saveToGallery">Save image to your Gallery</label>
 		<button id="saveToGallery">Save</button>-->
 		<script type="text/javascript" src="/js/main.js"></script>
+		<%- include('partials/bootstrapfoot') -%>
 	</body>
 </html>

@@ -9,6 +9,7 @@
 		<title>The Gallery Belonging to <%= userName %></title>
 
 		<!-- external CSS link -->
+		<%- include('partials/bootstraphead') -%>
 		<link rel="stylesheet" type="text/css" href="css/normalize.css">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
@@ -26,5 +27,6 @@
 			</div>
 		<% } %>
 		</div>
+		<%- include('partials/bootstrapfoot') -%>
 	</body>
 </html>

@@ -45,8 +45,18 @@ function placeImgOnCanvas() {
 // event.offsetX, event.offsetY gives the (x,y) offset from the edge of the canvas.
 
 // Add the event listeners for pointerdown, pointermove, and pointerup
-// This allows user with touchscreens to draw... Once I figure out how to keep the screen from moving with it!
-theCanvas.addEventListener('pointerdown', (e) => {
+// This allows user with touchscreens to draw... But we need a an extra line depending on function.
+// Since hiding the overflow hides the scrollbar... and on desktop, this moves the page a little.
+// That moves the canvas a little every time you click. Like trying to draw during an earthquake.
+theCanvas.addEventListener('mousedown', (e) => {
+  x = e.offsetX;
+  y = e.offsetY;
+  isDrawing = true;
+  brushColor = document.getElementById('color').value; //Modifies the global above
+  brushThickness = document.getElementById('thickness').value; //This also modifies a global
+  //document.body.style.overflow = 'hidden'; //Locks the screen in place while drawing...But hiding the scrollbar moves the window a bit on desktop browsers.
+});
+theCanvas.addEventListener('touchstart', (e) => {
   x = e.offsetX;
   y = e.offsetY;
   isDrawing = true;
@@ -97,6 +107,7 @@ function downloadImage(){
   console.log(tempDataURL);
   let anchor = document.getElementById('downloadLink');
   anchor.href = tempDataURL;
+  anchor.style.visibility = 'visible';
   anchor.click();
 }
 
