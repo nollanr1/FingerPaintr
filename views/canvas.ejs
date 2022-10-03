@@ -26,25 +26,36 @@
 				</p>
 			</canvas>
 		</div>
-		<input type="color" id="color" name="color" value = '#000'>
-			<label for="color">Color</label>
-		<input type="number" id="thickness" name="thickness" value = 3>
-			<label for="thickness">Brush Size</label>
-		<label for="imageUpload">Upload a image to paint on</label>
-		<input type="file" id="imageUpload" name="imageUpload"
-			accept="image/png, image/jpeg, image/jpg">
-		<label for="imageDownload">Generate download link for your painting</label>
-		<button id="imageDownload" name="imageDownload">Generate</button>
-		<a id="downloadLink" download href="">If the file didn't download, click here</a>
-
-		<div class="mt-5">
-            <h2>Upload an Image Directly to Your Gallery</h2>
-            <form action="/gallery" enctype="multipart/form-data" method="POST">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-            </form>
-          </div>
+		<ul class="canvasControls">
+			<li>
+				<input type="color" id="color" name="color" value = '#000'>
+					<label for="color">Color</label>
+			</li>
+			<li>
+				<input type="number" id="thickness" name="thickness" value = 3>
+					<label for="thickness">Brush Size</label>
+			</li>
+			<li>
+				<label for="imageUpload">Upload a image to paint on</label>
+				<input type="file" id="imageUpload" name="imageUpload"
+					accept="image/png, image/jpeg, image/jpg">
+			</li>
+			<li>
+				<label for="imageDownload">Download your painting</label>
+				<button id="imageDownload" name="imageDownload">Download</button>
+				<a id="downloadLink" download href="">If the file didn't download, click here</a>
+			</li>
+			<li>
+				<div class="mt-5">
+					<h2>Upload an Image Directly to Your Gallery</h2>
+					<form action="/gallery" enctype="multipart/form-data" method="POST">
+						<label for="imgUpload" class="form-label">Image</label>
+						<input type="file" class="form-control" id="imageUpload" name="file">
+					<button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+					</form>
+				</div>
+			</li>
+		</ul>
 
 		<!--<label for="saveToGallery">Save image to your Gallery</label>
 		<button id="saveToGallery">Save</button>-->

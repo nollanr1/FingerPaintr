@@ -26,17 +26,26 @@
 				</p>
 			</canvas>
 		</div>
-		<input type="color" id="color" name="color" value = '#000'>
-			<label for="color">Color</label>
-		<input type="number" id="thickness" name="thickness" value = 3>
-			<label for="thickness">Brush Size</label>
-		<label for="imageUpload">Upload a image to paint on</label>
-		<input type="file" id="imageUpload" name="imageUpload"
-			accept="image/png, image/jpeg, image/jpg">
-		<label for="imageDownload">Generate download link for your painting</label>
-		<button id="imageDownload" name="imageDownload">Generate</button>
-		<a id="downloadLink" download href="">If the file didn't download, click here</a>
-		
+		<ul class="canvasControls">
+			<li>
+				<input type="color" id="color" name="color" value = '#000'>
+					<label for="color">Color</label>
+			</li>
+			<li>
+				<input type="number" id="thickness" name="thickness" value = 3>
+					<label for="thickness">Brush Size</label>
+			</li>
+			<li>
+				<label for="imageUpload">Upload a image to paint on</label>
+				<input type="file" id="imageUpload" name="imageUpload"
+					accept="image/png, image/jpeg, image/jpg">
+			</li>
+			<li>
+				<label for="imageDownload">Download your painting</label>
+				<button id="imageDownload" name="imageDownload">Download</button>
+				<a id="downloadLink" download href="">If the file didn't download, click here</a>
+			</li>
+		</ul>
 
 		<script type="text/javascript" src="js/main.js"></script>
 		<%- include('partials/bootstrapfoot') -%>
