@@ -22,7 +22,18 @@ module.exports = {
 	addToGallery: async (req, res) => {
 		try {
 		  // Upload image to cloudinary
-		  const result = await cloudinary.uploader.upload(req.file.path);
+		  if(req.file){
+			console.log(req.file.path);
+		  }
+		  else if(req.body.dataUrl){
+			console.log('There is a dataURL but of course it will be massive so we will not be logging it.');
+		  }else{
+			console.log(req);
+			console.log("There's no file?");
+			throw new Error('ERR33: No file was provided for gallery upload');
+		  }
+		  //If a file upload exists, use that, else use the drawing in the body.
+		  const result = await cloudinary.uploader.upload(req.file ? req.file.path : req.body.dataUrl);
 		  await Painting.create({
 			title: 'Untitled Painting',
 			image: result.secure_url,
@@ -34,6 +45,7 @@ module.exports = {
 		  res.redirect(`/gallery`);
 		} catch (err) {
 		  console.log(err);
+		  res.redirect(`/canvas`);
 		}
 	},
 	getNameForm: async (req, res) => {

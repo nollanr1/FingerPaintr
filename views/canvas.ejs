@@ -46,12 +46,17 @@
 				<a id="downloadLink" download href="">If the file didn't download, click here</a>
 			</li>
 			<li>
+				<label for="saveToGallery">Save painting to your Gallery</label>
+				<button id="saveToGallery" name="save">Save to Gallery</button>
+			</li>
+			<li>
 				<div class="mt-5">
 					<h2>Upload an Image Directly to Your Gallery</h2>
-					<form action="/gallery" enctype="multipart/form-data" method="POST">
+					<form id="galleryForm" action="/gallery" enctype="multipart/form-data" method="POST">
 						<label for="imgUpload" class="form-label">Image</label>
 						<input type="file" class="form-control" id="imageUpload" name="file">
-					<button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+						<input type="text" class="form-control" id="thisBeSomeHackery" name="dataUrl">
+					<button id="galleryButton" type="submit" class="btn btn-primary" value="Upload">Submit</button>
 					</form>
 				</div>
 			</li>

@@ -120,16 +120,19 @@ function downloadImage(){
 }
 
 /*saveToGallery():
-In the final product this should hopefully allow users to save the canvas
-Directly to the gallery.
-As it stands, I can only get the terrible, terrible user loop of
-download the file, then upload the file through a seperate interface.
-Such is the pain of time crunch, but I have only myself to blame, really. */
+This takes the gallery image as a base64 image url
+plunks it directly into an invisible form field as raw text,
+then hits the send button for the user.
+Yes, this uses the same form as uploading an image from the user's device.
+It's something of a bodge, if the ElementID name didn't give it away already.*/
 function saveToGallery(){
   let tempDataURL = theCanvas.toDataURL();
-  console.log(`TempURL: ${tempDataURL}`);
-  //window.location.href = `/paramsLogger/${tempDataURL}`;
-  window.location.href = `/paramsLogger/TestParam`;
+  let galleryForm = new FormData(document.getElementById('galleryForm'));
+  document.getElementById('thisBeSomeHackery').value = tempDataURL;
+  console.log(document.getElementById('galleryForm'));
+  console.log(galleryForm.has('imageUpload'));
+  let submitButton = document.getElementById('galleryButton');
+  submitButton.click();
 }
 
 

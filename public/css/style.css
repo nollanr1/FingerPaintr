@@ -33,6 +33,9 @@ ul {
 #imageUpload {
      /*opacity: 0; *//*At MDN's recommendation because file upload is ugly*/
 }
+#thisBeSomeHackery {
+     visibility: hidden;
+}
 
 
 /******************************************
